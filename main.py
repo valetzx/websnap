@@ -26,7 +26,7 @@ def main(url=None, save: bool = False, upload: bool = False, json: bool = False,
     :return:
     """
     if not url:
-        return {"docs": "http://127.0.0.1:61/docs"}
+        return {"docs": "http://0.0.0.0:61/docs"}
     # 读取png格式的图片
     content = BytesIO(get_screenshot(url, width, height))
     if upload:
@@ -47,7 +47,7 @@ def main(url=None, save: bool = False, upload: bool = False, json: bool = False,
         # 保存图片到path
         with open(path_dir, "wb") as f:
             f.write(content.getvalue())
-        true_url = "http://127.0.0.1:61/get_save?file=" + path_dir
+        true_url = "http://0.0.0.0:61/get_save?file=" + path_dir
         if json:
             return {"msg": "成功截图！", "url": true_url}
         return RedirectResponse(true_url)
@@ -66,4 +66,4 @@ def main(file):
 
 
 if __name__ == "__main__":
-    uvicorn.run("main:app", host="127.0.0.1", port=61, log_level="info")
+    uvicorn.run("main:app", host="0.0.0.0", port=61, log_level="info")
