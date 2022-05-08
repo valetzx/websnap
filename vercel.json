@@ -1,8 +1,8 @@
 {
     "version": 2,
     "builds": [
-        { "src": "public/*", "use": "@now/static" },
-        { "src": "screenshot.js", "use": "@now/node", "config": { "maxLambdaSize": "80mb" } }
+        { "src": "public/*", "use": "@vercel/static" },
+        { "src": "screenshot.js", "use": "@vercel/node", "config": { "maxLambdaSize": "80mb" } }
     ],
     "routes": [
         { "src": "/", "dest": "/public/index.html" },
