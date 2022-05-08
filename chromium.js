@@ -3,7 +3,7 @@ const puppeteer = require('puppeteer-core');
 
 async function getScreenshot(url, type, quality, fullPage, viewportWidth, viewportHeight) {
     const browser = await puppeteer.launch({
-        args: ['--lang=zh-CN,zh'],
+        args: chrome.args,
         executablePath: await chrome.executablePath,
         headless: chrome.headless,
         defaultViewport: {
