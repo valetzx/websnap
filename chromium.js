@@ -11,7 +11,21 @@ async function getScreenshot(url, type, quality, fullPage, viewportWidth, viewpo
             height: viewportHeight
         }
     });
-
+    
+// Set the language forcefully on javascript
+await page.evaluateOnNewDocument(() => {
+    Object.defineProperty(navigator, "language", {
+        get: function() {
+            return ["zh-CN"];
+        }
+    });
+    Object.defineProperty(navigator, "languages", {
+        get: function() {
+            return ["zh-CN", "zh"];
+        }
+    });
+});
+    
     const page = await browser.newPage();
     await page.goto(url);
     const file = await page.screenshot({ type,  quality, fullPage });
